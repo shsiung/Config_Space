@@ -28,7 +28,6 @@ def inside_polygon(point, polygon):
     for i in range(len(vector)-1):
         ang += angle(vector[i],vector[i+1])     
     
-    print ang
     return ang == 2*math.pi
 
 
@@ -69,7 +68,7 @@ if __name__ == "__main__":
     end = (4,14)
     robot = Robot([8,10,10],[4,4,7])
 
-    poly2 = Polygon([14, 14, 19, 19], [14,19,14,19])
+    poly2 = Polygon([14, 14, 19, 19, 15], [14,19,14,19, 21])
     poly3 = Polygon([6,8,2,4],[4,9,1,8])
     # Plot the results    
     fig = plt.figure()
