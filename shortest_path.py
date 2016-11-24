@@ -30,6 +30,24 @@ def inside_polygon(point, polygon):
     
     return ang == 2*math.pi
 
+def line(p1, p2):
+    A = (p1[1] - p2[1])
+    B = (p2[0] - p1[0])
+    C = (p1[0]*p2[1] - p2[0]*p1[1])
+    return A, B, -C
+
+def intersection(p1_x, p1_y, p2_x, p2_y):
+    L1 = line(p1_x, p1_y)
+    L2 = line(p2_x, p2_y)
+    D  = L1[0] * L2[1] - L1[1] * L2[0]
+    Dx = L1[2] * L2[1] - L1[1] * L2[2]
+    Dy = L1[0] * L2[2] - L1[2] * L2[0]
+    if D != 0:
+        x = Dx / D
+        y = Dy / D
+        return x,y
+    else:
+        return False
 
 def find_config_polygon(polygon, robot):
     """Find the polygon in configuration space"""

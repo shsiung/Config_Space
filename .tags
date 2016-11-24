@@ -7,7 +7,9 @@ end	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Spac
 fig	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    fig = plt.figure()$/;"	v	language:Python
 find_config_polygon	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def find_config_polygon(polygon, robot):$/;"	f	language:Python
 inside_polygon	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def inside_polygon(point, polygon):$/;"	f	language:Python
+intersection	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def intersection(p1_x, p1_y, p2_x, p2_y):$/;"	f	language:Python
 length	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def length(v):$/;"	f	language:Python
+line	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def line(p1, p2):$/;"	f	language:Python
 math	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^import math$/;"	i	language:Python
 n_polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    n_polys = int(sys.argv[1])$/;"	v	language:Python
 n_pts	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    n_pts = 5$/;"	v	language:Python
