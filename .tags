@@ -1,22 +1,9 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 angle	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def angle(v1, v2):$/;"	f	language:Python
-ax2	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    ax2 = fig.add_subplot(1, 1, 1)$/;"	v	language:Python
+bounding_box	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def bounding_box(v1_1, v1_2, v2_1, v2_2):$/;"	f	language:Python
 dist	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def dist(m, n):$/;"	f	language:Python
 dotproduct	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def dotproduct(v1, v2):$/;"	f	language:Python
-end	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    end = (4,14)$/;"	v	language:Python
-fig	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    fig = plt.figure()$/;"	v	language:Python
 find_config_polygon	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def find_config_polygon(polygon, robot):$/;"	f	language:Python
 inside_polygon	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def inside_polygon(point, polygon):$/;"	f	language:Python
-intersection	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def intersection(p1_x, p1_y, p2_x, p2_y):$/;"	f	language:Python
 length	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def length(v):$/;"	f	language:Python
-line	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def line(p1, p2):$/;"	f	language:Python
 math	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^import math$/;"	i	language:Python
-n_polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    n_polys = int(sys.argv[1])$/;"	v	language:Python
-n_pts	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    n_pts = 5$/;"	v	language:Python
-poly	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^        poly = find_config_polygon(poly,robot)$/;"	v	language:Python
-poly2	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    poly2 = Polygon([14, 14, 19, 19, 15], [14,19,14,19, 21])$/;"	v	language:Python
-poly3	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    poly3 = Polygon([6,8,2,4],[4,9,1,8])$/;"	v	language:Python
-polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    polys = [poly2, poly3]$/;"	v	language:Python
-polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    polys = []$/;"	v	language:Python
-robot	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    robot = Robot([8,10,10],[4,4,7])$/;"	v	language:Python
-start	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    start = (8,4)$/;"	v	language:Python
