@@ -134,88 +134,28 @@ def calc_valid_edge(polys, total_nodes, total_poly_edges):
     valid_edge += total_poly_edge
     return valid_edge
 
-def calc_edge_weight(edges):
-    valid_edge_weight = []
-    for edge in edges:
-            weight = dist(edge[0],edge[1])
-            valid_edge_weight += [(edge[0],edge[1],weight)]
-            # print [(edge[0],edge[1],weight)]
-
-    return valid_edge_weight
-
 if __name__ == "__main__":
-    # # Generate random points to test
-    # n_polys = int(sys.argv[1])
-    # n_pts = 5
-    # polys = []
- 
-    # #for i in range(n_polys):
-    # #    pt_x = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
-    # #    pt_y = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
-    # #    poly = poly + [Polygon(pt_x,pt_y)]
-    # robot = Robot([8,10,10],[-1,-1,3])
-
-    # start = robot.points[0]
-    # goal = (4,20)
-
-    # poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
-    # poly3 = Polygon([-2,6,8,2,4],[5,4,9,1,8])
-    # # Plot the results    
-    # fig = plt.figure()
-    # #ax1 = fig.add_subplot(2, 1, 1)
-    # ax2 = fig.add_subplot(1, 1, 1)
-    # #ax1.plot(pt_x, pt_y,'ro',markersize=5)
-    # #ax1.set_title("Data points")
-    # polys = [poly2, poly3]
-    # for poly in polys:
-    #     ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo--',markersize=10)
-    #     poly = find_config_polygon(poly,robot)
-    #     ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo-',markersize=10,linewidth=5)
-    # ax2.scatter(start[0],start[1],s=200,c='g',marker='o')
-    # ax2.scatter(goal[0],goal[1],s=200,c='r',marker='*')
-    # ax2.plot(robot.x+[robot.x[0]], robot.y+[robot.y[0]],'c-')
-    # ax2.set_title("Convex sets")
-
-
-    # total_nodes = [goal, start] # Total number of nodes in the graph
-    # total_poly_edge = []       # Total polygon edges in the graph
-
-    # for poly in polys:
-    #     total_poly_edge += poly.line_segs
-    #     total_nodes += poly.points
-
-    # valid_edge = calc_valid_edge(polys, total_nodes, total_poly_edge)
-    # # valid_edge_weight = calc_edge_weight(valid_edge)
-
-    # for edge in valid_edge:
-    #     ax2.plot([edge[0][0],edge[1][0]],[edge[0][1],edge[1][1]],'b--')
-
-    # shortest_path = a_star(Node(start),Node(goal),total_nodes)
-
-    # plt.show()
 
      # Generate random points to test
     n_polys = int(sys.argv[1])
     n_pts = 5
     polys = []
  
+    # Initialization
     #for i in range(n_polys):
     #    pt_x = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
     #    pt_y = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
     #    poly = poly + [Polygon(pt_x,pt_y)]
     robot = Robot([8,10,10],[-1,-1,3])
-
     start = Node(robot.points[0])
-    goal = Node((4,20))
-
+    goal = Node((20,25))
     poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
     poly3 = Polygon([-2,6,8,2,4],[5,4,9,1,8])
+
     # Plot the results    
     fig = plt.figure()
-    #ax1 = fig.add_subplot(2, 1, 1)
     ax2 = fig.add_subplot(1, 1, 1)
-    #ax1.plot(pt_x, pt_y,'ro',markersize=5)
-    #ax1.set_title("Data points")
+
     polys = [poly2, poly3]
     for poly in polys:
         ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo--',markersize=10)
@@ -235,19 +175,17 @@ if __name__ == "__main__":
         total_nodes += poly.nodes
 
     valid_edge = calc_valid_edge(polys, total_nodes, total_poly_edge)
-    # valid_edge_weight = calc_edge_weight(valid_edge)
 
     for edge in valid_edge:
         ax2.plot([edge[0][0],edge[1][0]],[edge[0][1],edge[1][1]],'b--')
 
     shortest_path = a_star(start,goal,total_nodes)
-    
-    for short_node in shortest_path:
-        print short_node.node
-        ax2.scatter(short_node.node[0],short_node.node[1],s=500,c='r',marker='o')
+
+    for i in range(len(shortest_path)-1):
+        ax2.plot([shortest_path[i].node[0],shortest_path[i+1].node[0]],
+                 [shortest_path[i].node[1],shortest_path[i+1].node[1]],'ro-',lw=5)
 
     plt.show()
-
 
 
 

@@ -29,10 +29,22 @@ class Polygon:
             else:
                 self.line_segs += [((self.x[i],self.y[i]),(self.x[i+1],self.y[i+1]))]
 
+    def calc_neighbors(self):
+        for i in range(len(self.nodes)-1):
+            self.nodes[i].neighbor += [self.nodes[i+1]]
+            self.nodes[i+1].neighbor += [self.nodes[i]]
+
+        self.nodes[-1].neighbor += [self.nodes[0]]
+        self.nodes[0].neighbor += [self.nodes[-1]]
+
     def update(self):
         self.calc_convex_hull()
         self.calc_line_segs()
         self.nodes = map(lambda x: Node(x), self.points)
+        self.calc_neighbors()
+ 
+
+
 
 
         

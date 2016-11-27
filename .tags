@@ -1,9 +1,29 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
 angle	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def angle(v1, v2):$/;"	f	language:Python
+ax2	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    ax2 = fig.add_subplot(1, 1, 1)$/;"	v	language:Python
 bounding_box	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def bounding_box(v1_1, v1_2, v2_1, v2_2):$/;"	f	language:Python
+calc_edge_weight	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def calc_edge_weight(edges):$/;"	f	language:Python
+calc_valid_edge	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def calc_valid_edge(polys, total_nodes, total_poly_edges):$/;"	f	language:Python
 dist	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def dist(m, n):$/;"	f	language:Python
 dotproduct	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def dotproduct(v1, v2):$/;"	f	language:Python
+fig	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    fig = plt.figure()$/;"	v	language:Python
 find_config_polygon	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def find_config_polygon(polygon, robot):$/;"	f	language:Python
+goal	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    goal = Node((12,25))$/;"	v	language:Python
 inside_polygon	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def inside_polygon(point, polygon):$/;"	f	language:Python
+intersect	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def intersect(v1, v2):$/;"	f	language:Python
 length	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def length(v):$/;"	f	language:Python
+line_eq	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^def line_eq(pt1, pt2):$/;"	f	language:Python
 math	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^import math$/;"	i	language:Python
+n_polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    n_polys = int(sys.argv[1])$/;"	v	language:Python
+n_pts	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    n_pts = 5$/;"	v	language:Python
+poly	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^        poly = find_config_polygon(poly,robot)$/;"	v	language:Python
+poly2	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])$/;"	v	language:Python
+poly3	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    poly3 = Polygon([-2,6,8,2,4],[5,4,9,1,8])$/;"	v	language:Python
+polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    polys = [poly2, poly3]$/;"	v	language:Python
+polys	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    polys = []$/;"	v	language:Python
+robot	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    robot = Robot([8,10,10],[-1,-1,3])$/;"	v	language:Python
+shortest_path	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    shortest_path = a_star(start,goal,total_nodes)$/;"	v	language:Python
+start	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    start = Node(robot.points[0])$/;"	v	language:Python
+total_nodes	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    total_nodes = [goal, start] # Total number of nodes in the graph$/;"	v	language:Python
+total_poly_edge	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    total_poly_edge = []       # Total polygon edges in the graph$/;"	v	language:Python
+valid_edge	/Users/jerry8050/Desktop/CMU/1st Year/18211 Fundamental Math/HW6/Config_Space/shortest_path.py	/^    valid_edge = calc_valid_edge(polys, total_nodes, total_poly_edge)$/;"	v	language:Python
