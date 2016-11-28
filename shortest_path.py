@@ -19,7 +19,10 @@ def length(v):
 
 def angle(v1, v2):
     """Returns the angle between two vector"""
-    return math.acos(dotproduct(v1, v2) / (length(v1) * length(v2)))
+    if (length(v1)*length(v2)) == 0:
+        return 0
+    else:
+        return math.acos(dotproduct(v1, v2) / (length(v1) * length(v2)))
 
 def inside_polygon(point, polygon):
     """ 
@@ -34,8 +37,10 @@ def inside_polygon(point, polygon):
 
     for i in range(len(vector)-1):
         ang += angle(vector[i],vector[i+1])     
-    
-    return ang == 2*math.pi
+
+    ang += angle(vector[0],vector[-1])
+
+    return abs(ang - 2*math.pi) < 0.001
 
 def find_config_polygon(polygon, robot):
     """Find the polygon in configuration space"""
@@ -47,9 +52,6 @@ def find_config_polygon(polygon, robot):
         for robot_pt in robot.points:
             x_diff = poly_pt[0]-robot_pt[0]
             y_diff = poly_pt[1]-robot_pt[1]
-            for robot_pt in robot.points:
-                if inside_polygon(robot_pt, polygon.points):
-                    touch = True
             if not touch:
                 new_poly_points = new_poly_points + [(config_origin[0]+x_diff, config_origin[1]+y_diff)]
 
@@ -103,14 +105,16 @@ def calc_valid_edge(polys, total_nodes, total_poly_edges):
     valid_edge = []
     for poly in polys:
         for node_start in poly.nodes:
+
             for node_end in total_nodes:
+                
                 if node_end in poly.nodes:
                     continue
                 else:
                     does_intersect = False
                     for poly_seg in total_poly_edge:
                         if node_end.node in poly_seg or node_start.node in poly_seg:
-                            continue
+                            continue 
                         else:
                             intersection = intersect((node_start.node,node_end.node),poly_seg)
                             if intersection == False:
@@ -120,6 +124,8 @@ def calc_valid_edge(polys, total_nodes, total_poly_edges):
                                     continue
                                 else:
                                     does_intersect = True
+                                    break
+                        
                     if not does_intersect:
                         node_start.neighbor += [node_end]
                         node_end.neighbor += [node_start]
@@ -137,7 +143,6 @@ def check_overlap_two(poly1, poly2):
         for poly_seg in poly1.line_segs:
             if intersect((poly2.inner_point,corner2.node),poly_seg):
                 return True
-    print "HIII"
     return False
 
 def check_overlap(polys):
@@ -187,30 +192,34 @@ def random_env_generator(n_polys):
 
 if __name__ == "__main__":
 
+    valid_route = True
+    direct_edge = True
+
     # Randomly generated environment
-    [polys, robot, start, goal] = random_env_generator(int(sys.argv[1]))    
+    #[polys, robot, start, goal] = random_env_generator(int(sys.argv[1]))    
 
     # Initialization
     robot = Robot([8,10,10],[-1,-1,3])
-    # start = Node(robot.points[0])
-    # goal = Node((0,35))
-    # poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
-    # poly3 = Polygon([-2,6,15,2,4],[5,4,9,1,8])
-    # poly4 = Polygon([-5,0,9,10,7],[15,24,28,23,30])
-    # polys = [poly2, poly3, poly4]
+    start = Node(robot.points[0])
+    goal = Node((3,22))
+    poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
+    poly3 = Polygon([-2,6,15,2,4],[5,4,9,1,8])
+    poly4 = Polygon([-5,0,9,10,7],[15,24,28,23,30])
+    polys = [poly2, poly3, poly4]
 
     # # Plot the results    
     fig = plt.figure()
     ax2 = fig.add_subplot(1, 1, 1)
 
     for poly in polys:
+        if inside_polygon(start.node, poly.points) or inside_polygon(goal.node, poly.points):
+            valid_route = False 
         ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo--',markersize=10)
         poly = find_config_polygon(poly,robot)
         ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo-',markersize=10,linewidth=5)
+     
 
     # polys = check_overlap(polys)
-    print polys
-    print "HERE"
     ax2.scatter(start.node[0],start.node[1],s=500,c='g',marker='o')
     ax2.scatter(goal.node[0],goal.node[1],s=500,c='r',marker='*')
     ax2.plot(robot.x+[robot.x[0]], robot.y+[robot.y[0]],'c-')
@@ -223,16 +232,28 @@ if __name__ == "__main__":
         total_poly_edge += poly.line_segs
         total_nodes += poly.nodes
 
-    valid_edge = calc_valid_edge(polys, total_nodes, total_poly_edge)
+    for poly_seg in total_poly_edge:
+        if intersect((start.node,goal.node),poly_seg):
+            direct_edge = False
+            break
 
-    for edge in valid_edge:
-        ax2.plot([edge[0][0],edge[1][0]],[edge[0][1],edge[1][1]],'b--')
+    if direct_edge:
+        ax2.plot([goal.node[0],start.node[0]],
+                 [goal.node[1],start.node[1]],'ro-',lw=5)
 
-    shortest_path = a_star(start,goal,total_nodes)
+    elif not valid_route:
+        print "No possible route!"
+    else:
+        valid_edge = calc_valid_edge(polys, total_nodes, total_poly_edge)
 
-    for i in range(len(shortest_path)-1):
-        ax2.plot([shortest_path[i].node[0],shortest_path[i+1].node[0]],
-                 [shortest_path[i].node[1],shortest_path[i+1].node[1]],'ro-',lw=5)
+        for edge in valid_edge:
+            ax2.plot([edge[0][0],edge[1][0]],[edge[0][1],edge[1][1]],'b--')
+
+        shortest_path = a_star(start,goal,total_nodes)
+
+        for i in range(len(shortest_path)-1):
+            ax2.plot([shortest_path[i].node[0],shortest_path[i+1].node[0]],
+                     [shortest_path[i].node[1],shortest_path[i+1].node[1]],'ro-',lw=5)
 
     plt.show()
 
