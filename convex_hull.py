@@ -31,27 +31,26 @@ def convex_hull(points):
             hull.append(q)
     return hull
 
-"""
-if __name__ == "__main__":
 
-    # Generate random points to test
-    n_pts = int(sys.argv[1])
-    pt_x = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
-    pt_y = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
-    points = zip(pt_x,pt_y)
+# if __name__ == "__main__":
+
+#     # Generate random points to test
+#     n_pts = int(sys.argv[1])
+#     pt_x = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
+#     pt_y = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
+#     points = zip(pt_x,pt_y)
     
-    # Plot the results    
-    fig = plt.figure()
-    ax1 = fig.add_subplot(2, 1, 1)
-    ax2 = fig.add_subplot(2, 1, 2, sharex=ax1)
-    ax1.plot(pt_x, pt_y,'ro',markersize=5)
-    ax1.set_title("Data points")
-    convex_pts = convex_hull(points)
-    convex_x = [i[0] for i in convex_pts]
-    convex_y = [i[1] for i in convex_pts]
+#     # Plot the results    
+#     fig = plt.figure()
+#     ax1 = fig.add_subplot(2, 1, 1)
+#     ax2 = fig.add_subplot(2, 1, 2, sharex=ax1)
+#     ax1.plot(pt_x, pt_y,'ro',markersize=5)
+#     ax1.set_title("Data points")
+#     convex_pts = convex_hull(points)
+#     convex_x = [i[0] for i in convex_pts]
+#     convex_y = [i[1] for i in convex_pts]
 
-    ax2.plot(pt_x,pt_y,'ro',markersize=5)
-    ax2.plot(convex_x+[convex_x[0]], convex_y+[convex_y[0]],'o-',markersize=10)
-    ax2.set_title("Convex sets")
-    plt.show()
-"""
+#     ax2.plot(pt_x,pt_y,'ro',markersize=5)
+#     ax2.plot(convex_x+[convex_x[0]], convex_y+[convex_y[0]],'o-',markersize=10)
+#     ax2.set_title("Convex sets")
+#     plt.show()

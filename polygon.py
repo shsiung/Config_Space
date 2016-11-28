@@ -41,6 +41,7 @@ class Polygon:
         self.calc_convex_hull()
         self.calc_line_segs()
         self.nodes = map(lambda x: Node(x), self.points)
+        self.inner_point = (sum(self.x)/len(self.x), sum(self.y)/len(self.y))
         self.calc_neighbors()
  
 

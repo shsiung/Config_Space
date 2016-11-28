@@ -1,6 +1,7 @@
 from polygon import *
 from robot import *
 from a_star import *
+import numpy as np
 import math
 
 def dist(m, n):
@@ -98,13 +99,6 @@ def intersect(v1, v2):
         else:
             return False
 
-def bounding_box(v1_1, v1_2, v2_1, v2_2):
-    """ Find the bounding box interestion between 2 vectors, v1 and v2."""
-    return v1_1[0] < v2_2[0] \
-        and v1_2[0] > v2_1[0] \
-        and v1_1[1] < v2_2[1] \
-        and v1_2[1] > v2_1[1];
-
 def calc_valid_edge(polys, total_nodes, total_poly_edges):
     valid_edge = []
     for poly in polys:
@@ -134,44 +128,93 @@ def calc_valid_edge(polys, total_nodes, total_poly_edges):
     valid_edge += total_poly_edge
     return valid_edge
 
-def random_polygon_generator(n_polys):
+def check_overlap_two(poly1, poly2):
+    for corner1 in poly1.nodes:
+        for poly_seg in poly2.line_segs:
+            if intersect((poly1.inner_point,corner1.node),poly_seg):
+                return True
+    for corner2 in poly2.nodes:
+        for poly_seg in poly1.line_segs:
+            if intersect((poly2.inner_point,corner2.node),poly_seg):
+                return True
+    print "HIII"
+    return False
 
+def check_overlap(polys):
+    new_polys = []
+
+    for poly1 in polys:
+        check_again = False
+        for poly2 in polys:
+            if poly1 != poly2 and check_overlap_two(poly1,poly2):  
+                new_poly = Polygon(poly1.x+poly2.x, poly1.y+poly2.y)
+                new_poly.update()
+                new_polys += [new_poly]
+                check_again = True;
+                print "OVERLAP"
+
+        if not check_again:
+            new_polys += [poly1]
+
+    if check_again:
+        new_polys = check_overlap(new_polys)
+
+    return new_polys
+
+
+
+def random_env_generator(n_polys):
+    centers_x = np.random.normal(0,50,n_polys+2)
+    centers_y = np.random.normal(0,50,n_polys+2)
+
+    centers = zip(centers_x, centers_y)
+    polys = []
+    num_pts = 20
+    for poly in centers[0:-2]:
+        poly_pts_x = np.random.normal(poly[0],10,num_pts)
+        poly_pts_y = np.random.normal(poly[1],10,num_pts)
+        polys += [Polygon(poly_pts_x,poly_pts_y)]
+
+    robot_pts_x = np.random.normal(centers[-2][0],3,4);
+    robot_pts_y = np.random.normal(centers[-2][1],3,4);
+    robot = Robot(robot_pts_x, robot_pts_y);
+
+    start = Node(robot.points[0])
+    goal = Node(centers[-1])
+
+    print centers
+    return polys, robot, start, goal
 
 if __name__ == "__main__":
 
-     # Generate random points to test
-    n_polys = int(sys.argv[1])
-    n_pts = 5
-    polys = []
+    # Randomly generated environment
+    [polys, robot, start, goal] = random_env_generator(int(sys.argv[1]))    
 
-    # polys = random_polygon_generator(n_polys)
- 
     # Initialization
-    #for i in range(n_polys):
-    #    pt_x = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
-    #    pt_y = random.sample(xrange(-n_pts*3,n_pts*3),n_pts)
-    #    poly = poly + [Polygon(pt_x,pt_y)]
     robot = Robot([8,10,10],[-1,-1,3])
-    start = Node(robot.points[0])
-    goal = Node((0,35))
-    poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
-    poly3 = Polygon([-2,6,15,2,4],[5,4,9,1,8])
-    poly4 = Polygon([-5,0,9,10,7],[15,24,28,23,30])
+    # start = Node(robot.points[0])
+    # goal = Node((0,35))
+    # poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
+    # poly3 = Polygon([-2,6,15,2,4],[5,4,9,1,8])
+    # poly4 = Polygon([-5,0,9,10,7],[15,24,28,23,30])
+    # polys = [poly2, poly3, poly4]
 
-    # Plot the results    
+    # # Plot the results    
     fig = plt.figure()
     ax2 = fig.add_subplot(1, 1, 1)
 
-    polys = [poly2, poly3, poly4]
     for poly in polys:
         ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo--',markersize=10)
         poly = find_config_polygon(poly,robot)
         ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo-',markersize=10,linewidth=5)
+
+    # polys = check_overlap(polys)
+    print polys
+    print "HERE"
     ax2.scatter(start.node[0],start.node[1],s=500,c='g',marker='o')
-    ax2.scatter(goal.node[0],goal.node[1],s=500,c='r',marker='o')
+    ax2.scatter(goal.node[0],goal.node[1],s=500,c='r',marker='*')
     ax2.plot(robot.x+[robot.x[0]], robot.y+[robot.y[0]],'c-')
     ax2.set_title("Convex sets")
-
 
     total_nodes = [goal, start] # Total number of nodes in the graph
     total_poly_edge = []       # Total polygon edges in the graph
