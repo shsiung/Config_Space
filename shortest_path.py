@@ -134,12 +134,17 @@ def calc_valid_edge(polys, total_nodes, total_poly_edges):
     valid_edge += total_poly_edge
     return valid_edge
 
+def random_polygon_generator(n_polys):
+
+
 if __name__ == "__main__":
 
      # Generate random points to test
     n_polys = int(sys.argv[1])
     n_pts = 5
     polys = []
+
+    # polys = random_polygon_generator(n_polys)
  
     # Initialization
     #for i in range(n_polys):
@@ -148,15 +153,16 @@ if __name__ == "__main__":
     #    poly = poly + [Polygon(pt_x,pt_y)]
     robot = Robot([8,10,10],[-1,-1,3])
     start = Node(robot.points[0])
-    goal = Node((20,25))
+    goal = Node((0,35))
     poly2 = Polygon([14, 14, 19, 19, 15], [17,19,17,19, 21])
-    poly3 = Polygon([-2,6,8,2,4],[5,4,9,1,8])
+    poly3 = Polygon([-2,6,15,2,4],[5,4,9,1,8])
+    poly4 = Polygon([-5,0,9,10,7],[15,24,28,23,30])
 
     # Plot the results    
     fig = plt.figure()
     ax2 = fig.add_subplot(1, 1, 1)
 
-    polys = [poly2, poly3]
+    polys = [poly2, poly3, poly4]
     for poly in polys:
         ax2.plot(poly.x+[poly.x[0]], poly.y+[poly.y[0]],'yo--',markersize=10)
         poly = find_config_polygon(poly,robot)
